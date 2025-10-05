@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Football Tower</title>  
+  <meta name="description" content="Official site for my Roblox game" />  
+  <style>  
+    :root{--bg:#0f1724; --card:#111827; --muted:#9ca3af; --accent:#f97316; --glass: rgba(255,255,255,0.03);font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}  
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#071024 0%,var(--bg) 100%);color:#e6eef8;}  
+    .container{max-width:1000px;margin:48px auto;padding:24px} header{display:flex;align-items:center;justify-content:space-between;gap:20px} .logo{display:flex;align-items:center;gap:12px} .logo img{width:64px;height:64px;border-radius:12px;object-fit:cover} h1{margin:0;font-size:24px} nav a{color:var(--muted);text-decoration:none;margin-left:14px} .hero{display:grid;grid-template-columns:1fr;gap:28px;margin-top:28px;align-items:center} .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.7)} .lead{color:var(--muted);margin-top:8px} .play-btn{display:inline-block;padding:12px 18px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#ff7a59);color:white;text-decoration:none;font-weight:600;margin-top:16px} .socials{display:flex;gap:10px;margin-top:14px} .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:var(--glass);text-decoration:none;color:inherit;font-weight:600} footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center} @media (max-width:880px){.hero{grid-template-columns:1fr;}}  
+  </style>  
+</head>  
+<body>  
+  <div class="container">  
+    <header>  
+      <div class="logo">  
+        <img src="https://i.postimg.cc/c4FmZMdh/Untitled-design-20250901-004416-0000.png" alt="Game Logo" />  
+        <div>  
+          <h1>Football Tower</h1>  
+          <div style="color:var(--muted);font-size:13px">Play the official Roblox game now!</div>  
+        </div>  
+      </div>  
+      <nav>  
+        <a href="#play">Play</a>  
+        <a href="#social">Social</a>  
+      </nav>  
+    </header>
+    
+    <section class="hero">  
+      <div>  
+        <div class="card">  
+          <h2>Welcome to Football Tower!</h2>  
+          <p class="lead">A fun Roblox game where you delve into the world of obbies but with the extra spice of themes of Football. Compete for the World Record and troll other people! Join to meet other players,compete against them and enjoy!</p>  
+          <a id="play" class="play-btn" href="https://www.roblox.com/share?code=ba742fc2aec4ab448b757ca0a07d635b&type=ExperienceDetails&stamp=1758489186322" target="_blank">Play on Roblox</a>  
+          <div class="socials" id="social" style="margin-top:16px">  
+            <a href="https://youtube.com/@cristaniooo?si=B_pKkxRBIAqJIU0J" target="_blank" rel="noopener">YouTube</a>  
+            <a href="https://discord.gg/Ex9Nk66yD2" target="_blank" rel="noopener">Discord</a>  
+          </div>  
+        </div>
+      </div>    
+    </section>  
+
+    <footer>  
+      🍁 Built by DosSantosAverioCR7 — Official Owner Of the game "Football Tower"  
+    </footer>    
+  </div>  
+</body>  
+</html>
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
